@@ -2,9 +2,33 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
+        xmlns:infr="clr-namespace:ProcessInnovator.Infrastructure;assembly=ProcessInnovator.Infrastructure"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="350" Width="525">
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static infr:RegionNames.MenuBarRegion}" />
+        <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static infr:RegionNames.ToolBarRegion}" />
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <ContentControl Grid.Column="0" prism:RegionManager.RegionName="{x:Static infr:RegionNames.LeftPanelRegion}" />
+            <GridSplitter Grid.Column="1" Width="2" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Stretch"/>
+            <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{x:Static infr:RegionNames.MainRegion}" />
+            <ContentControl Grid.Column="2" prism:RegionManager.RegionName="{x:Static infr:RegionNames.RightPanelRegion}" />
+        </Grid>
+        
+        <ContentControl Grid.Row="3" prism:RegionManager.RegionName="{x:Static infr:RegionNames.StatusBarRegion}" />
     </Grid>
 </Window>
