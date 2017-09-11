@@ -4,7 +4,9 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:infr="clr-namespace:ProcessInnovator.Infrastructure;assembly=ProcessInnovator.Infrastructure"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="350" Width="525">
+        SnapsToDevicePixels="True" 
+        Title="Process Innovator®"
+        Height="768" Width="1200" MinWidth="1050">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -18,7 +20,7 @@
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="140" />
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>

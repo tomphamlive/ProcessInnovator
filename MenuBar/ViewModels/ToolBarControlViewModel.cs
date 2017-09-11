@@ -1,9 +1,9 @@
-﻿using System.Windows.Input;
-using ProcessInnovator.Infrastructure.Interfaces;
+﻿using ProcessInnovator.Infrastructure.Interfaces;
+using System.Windows.Input;
 
 namespace MenuBar.ViewModels
 {
-    public class MenuBarControlViewModel : IFileCommands
+    public class ToolBarControlViewModel : IFileCommands
     {
         #region Implementation of IFileCommands
 
@@ -20,5 +20,11 @@ namespace MenuBar.ViewModels
         public ICommand ExitCommand { get; set; }
 
         #endregion
+
+        public ICommand UndoCommand { get; set; }
+
+        public ICommand RedoCommand { get; set; }
+
+        public ICommand DuplicateItemCommand { get; set; }
     }
 }
