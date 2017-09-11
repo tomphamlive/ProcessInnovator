@@ -2,11 +2,10 @@
 
 namespace MenuBar.ViewModels
 {
-    public class MenuBarViewModel
+    public class MenuBarControlViewModel
     {
-        public MenuBarViewModel()
-        {
-            
+        public MenuBarControlViewModel()
+        {            
         }
         //public SimpleCommand NewCommand { get; set; }
 

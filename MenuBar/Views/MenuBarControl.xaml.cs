@@ -1,5 +1,4 @@
-﻿using MenuBar.ViewModels;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace MenuBar.Views
 {
@@ -8,8 +7,6 @@ namespace MenuBar.Views
         public MenuBarControl()
         {
             InitializeComponent();
-
-            DataContext = new MenuBarViewModel();
         }
     }
 }

@@ -72,7 +72,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ViewModels\MenuBarViewModel.cs" />
+    <Compile Include="ViewModels\MenuBarControlViewModel.cs" />
     <Compile Include="Views\MenuBarControl.xaml.cs">
       <DependentUpon>MenuBarControl.xaml</DependentUpon>
     </Compile>

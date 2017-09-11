@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using MenuBar.Views;
+﻿using MenuBar.Views;
 using Prism.Modularity;
 using Prism.Regions;
 using ProcessInnovator.Infrastructure;
@@ -18,6 +17,10 @@ namespace MenuBar
         public void Initialize()
         {
             _regionManager.RegisterViewWithRegion(RegionNames.MenuBarRegion, typeof(MenuBarControl));
+
+            //subscribe to services or events
+            //register shared services
+            //compose views into shell
         }
     }
 }
