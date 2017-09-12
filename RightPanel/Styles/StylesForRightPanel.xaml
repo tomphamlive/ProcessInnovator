@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Image x:Key="ComponentsImage" Source="../Resources/Flask.png"/>
+    <Image x:Key="ModelDataImage" Source="../Resources/small_PI Exchanger.png"/>
+    <Image x:Key="ToolsImage" Source="../Resources/EngineersAide.png"/>
+    
+
+</ResourceDictionary>

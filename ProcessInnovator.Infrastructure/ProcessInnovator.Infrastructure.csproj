@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\ItemAddedEventHandler.cs" />
+    <Compile Include="Events\SelectedTabChangedEventHandler.cs" />
     <Compile Include="Interfaces\IFileCommands.cs" />
     <Compile Include="RegionNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

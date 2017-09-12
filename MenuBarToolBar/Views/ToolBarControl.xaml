@@ -31,12 +31,12 @@
 
         <Separator/>
 
-        <RepeatButton ToolTip="Undo" Command="{Binding UndoCommand}" >
+        <Button ToolTip="Undo" Command="{Binding UndoCommand}" >
             <Image Style="{StaticResource UndoImageStyle}"/>
-        </RepeatButton>
-        <RepeatButton ToolTip="Redo" Command="{Binding RedoCommand}" >
+        </Button>
+        <Button ToolTip="Redo" Command="{Binding RedoCommand}" >
             <Image Style="{StaticResource RedoImageStyle}"/>
-        </RepeatButton>
+        </Button>
 
         <Separator/>
 

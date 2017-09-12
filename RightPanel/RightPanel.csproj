@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7ADBA605-514E-4419-A908-67FD1889FF58}</ProjectGuid>
+    <ProjectGuid>{10A9F40C-52AE-49FD-9452-209BE8EB494B}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MenuBar</RootNamespace>
-    <AssemblyName>MenuBar</AssemblyName>
+    <RootNamespace>RightPanel</RootNamespace>
+    <AssemblyName>RightPanel</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,12 +41,8 @@
       <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -59,7 +57,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MenuBarModule.cs" />
+    <Compile Include="RightPanelModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -73,18 +71,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ViewModels\MenuBarControlViewModel.cs" />
-    <Compile Include="ViewModels\ToolBarControlViewModel.cs" />
-    <Compile Include="Views\MenuBarControl.xaml.cs">
-      <DependentUpon>MenuBarControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ToolBarControl.xaml.cs">
-      <DependentUpon>ToolBarControl.xaml</DependentUpon>
+    <Compile Include="ViewModels\RightPanelControlViewModel.cs" />
+    <Compile Include="Views\RightPanelControl.xaml.cs">
+      <DependentUpon>RightPanelControl.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -93,6 +86,7 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ProcessInnovator.Infrastructure\ProcessInnovator.Infrastructure.csproj">
       <Project>{d3cf0b3b-5f51-4711-bcfc-b644c2c1c03d}</Project>
@@ -100,31 +94,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Resources\StylesForMenuBarToolBar.xaml">
+    <Page Include="Styles\StylesForRightPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MenuBarControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ToolBarControl.xaml">
+    <Page Include="Views\RightPanelControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\new.png" />
-    <Resource Include="Resources\open.png" />
-    <Resource Include="Resources\print.png" />
-    <Resource Include="Resources\save.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\redo.png" />
-    <Resource Include="Resources\undo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\paste.png" />
+    <Resource Include="Resources\EngineersAide.png" />
+    <Resource Include="Resources\Flask.png" />
+    <Resource Include="Resources\small_PI Exchanger.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
