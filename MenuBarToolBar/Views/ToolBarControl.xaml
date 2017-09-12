@@ -22,9 +22,6 @@
         <Button ToolTip="Save" Command="{Binding SaveCommand}" >
             <Image Style="{StaticResource SaveImageStyle}"/>
         </Button>
-        <Button ToolTip="Save As" Command="{Binding SaveAsCommand}" >
-            <Image Style="{StaticResource SaveImageStyle}"/>
-        </Button>
         <Button ToolTip="Print" Command="{Binding PrintCommand}">
             <Image Style="{StaticResource PrintImageStyle}"/>
         </Button>
