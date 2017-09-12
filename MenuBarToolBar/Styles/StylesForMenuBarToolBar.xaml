@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="NewImageStyle" TargetType="Image">
+        <Setter Property="Source" Value="../Resources/new.png" />
+    </Style>
+    <Style x:Key="OpenImageStyle" TargetType="Image">
+        <Setter Property="Source" Value="../Resources/open.png" />
+    </Style>
+    <Style x:Key="SaveImageStyle" TargetType="Image">
+        <Setter Property="Source" Value="../Resources/save.png" />
+    </Style>
+    <Style x:Key="PrintImageStyle" TargetType="Image">
+        <Setter Property="Source" Value="../Resources/print.png" />
+    </Style>
+    <Style x:Key="UndoImageStyle" TargetType="Image">
+        <Setter Property="Source" Value="../Resources/undo.png" />
+    </Style>
+    <Style x:Key="RedoImageStyle" TargetType="Image">
+        <Setter Property="Source" Value="../Resources/redo.png" />
+    </Style>
+    <Style x:Key="PasteImageStyle" TargetType="Image">
+        <Setter Property="Source" Value="../Resources/paste.png" />
+    </Style>
+    
+</ResourceDictionary>

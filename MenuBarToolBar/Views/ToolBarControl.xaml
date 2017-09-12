@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="MenuBarToolBar.Views.ToolBarControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"             
+             mc:Ignorable="d" 
+             d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Styles/StylesForMenuBarToolBar.xaml"/>
+    </UserControl.Resources>
+
+    <ToolBar ToolBarTray.IsLocked="True" Background="Transparent" >
+
+        <Button ToolTip="New" Command="{Binding NewCommand}" >
+            <Image Style="{StaticResource NewImageStyle}"/>
+        </Button>
+        <Button ToolTip="Open" Command="{Binding OpenCommand}" >
+            <Image Style="{StaticResource OpenImageStyle}"/>
+        </Button>
+        <Button ToolTip="Save" Command="{Binding SaveCommand}" >
+            <Image Style="{StaticResource SaveImageStyle}"/>
+        </Button>
+        <Button ToolTip="Save As" Command="{Binding SaveAsCommand}" >
+            <Image Style="{StaticResource SaveImageStyle}"/>
+        </Button>
+        <Button ToolTip="Print" Command="{Binding PrintCommand}">
+            <Image Style="{StaticResource PrintImageStyle}"/>
+        </Button>
+
+        <Separator/>
+
+        <RepeatButton ToolTip="Undo" Command="{Binding UndoCommand}" >
+            <Image Style="{StaticResource UndoImageStyle}"/>
+        </RepeatButton>
+        <RepeatButton ToolTip="Redo" Command="{Binding RedoCommand}" >
+            <Image Style="{StaticResource RedoImageStyle}"/>
+        </RepeatButton>
+
+        <Separator/>
+
+        <Button ToolTip="Duplicate" Command="{Binding DuplicateItemCommand}" >
+            <Image Style="{StaticResource PasteImageStyle}"/>
+        </Button>
+    </ToolBar>
+</UserControl>

@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessInnovator", "Process
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessInnovator.Infrastructure", "ProcessInnovator.Infrastructure\ProcessInnovator.Infrastructure.csproj", "{D3CF0B3B-5F51-4711-BCFC-B644C2C1C03D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{1CC26453-669E-46A6-A7E2-1852033FBBC9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{4B970638-9D18-429E-B0AE-261BE7FAB61A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuBar", "MenuBar\MenuBar.csproj", "{AB8B448C-DD74-4D60-A041-3E5D03A32180}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuBarToolBar", "MenuBarToolBar\MenuBarToolBar.csproj", "{AB8B448C-DD74-4D60-A041-3E5D03A32180}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,7 +34,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{AB8B448C-DD74-4D60-A041-3E5D03A32180} = {1CC26453-669E-46A6-A7E2-1852033FBBC9}
+		{AB8B448C-DD74-4D60-A041-3E5D03A32180} = {4B970638-9D18-429E-B0AE-261BE7FAB61A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {42DC616E-1F56-4236-ABAA-7D67196DA00A}
