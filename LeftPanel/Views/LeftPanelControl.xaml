@@ -1,0 +1,454 @@
+﻿<UserControl x:Class="LeftPanel.Views.LeftPanelControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:converters="clr-namespace:ProcessInnovator.Infrastructure.Converters;assembly=ProcessInnovator.Infrastructure"
+             xmlns:acb="clr-namespace:AttachedCommandBehavior;assembly=AttachedCommandBehavior"
+             prism:ViewModelLocator.AutoWireViewModel="True"              
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Styles/StylesForLeftPanel.xaml"/>
+    </UserControl.Resources>
+
+    <Border BorderBrush="LightGray" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!--Simulation Mode-->
+            <ComboBox Grid.Row="0" Style="{StaticResource SimulationComboBoxStyle}"
+                      Margin="0,0,0,10"
+                      ItemsSource="{Binding SimulationModes}" 
+                      SelectedItem="{Binding SelectedSimulationMode}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <StackPanel Grid.Row="1" IsEnabled="{Binding IsInDesignMode}">
+                <!--Speed draw-->
+                <Grid x:Name="Pipes" Visibility="Visible" Width="100">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Row="1" Grid.Column="1" 
+                            x:Name="SizePipe" 
+                            Background="Transparent" 
+                            BorderThickness="0" 
+                            Margin="0,-1,0,0" 
+                            IsTabStop="False" 
+                            Content="M" 
+                            FontWeight="Bold" 
+                            FontSize="14" 
+                            Foreground="#FF3E78B3" 
+                            Visibility="Visible" 
+                            FontFamily="Century Gothic" 
+                            HorizontalContentAlignment="Center" 
+                            VerticalContentAlignment="Center"
+                            />
+                    <Button Grid.Row="0" Grid.Column="1" 
+                            x:Name="UpPipe" 
+                            Background="Transparent" 
+                            BorderThickness="0"  
+                            Margin="-1,0,0,0"
+                            IsTabStop="False"
+                            Command="{Binding Path=UpDrawCommand}"
+                            >
+                        <Image Source="..\Resources\PipeIcons\arrow_N.png" Width="16" Height="16" />
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="0" x:Name="LeftPipe" Background="Transparent" BorderThickness="0"  Margin="0,1,0,0"
+                            IsTabStop="False" HorizontalAlignment="Right" 
+                            Command="{Binding Path=LeftDrawCommand}">
+                        <Image Source="..\Resources\PipeIcons\arrow_W.png" Width="16" Height="16"/>
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="2" x:Name="RightPipe" Background="Transparent" BorderThickness="0" Margin="0,0,0,0" 
+                            HorizontalAlignment="Left" IsTabStop="False" 
+                            Command="{Binding Path=RightDrawCommand}">
+                        <Image Source="..\Resources\PipeIcons\arrow_E.png" Width="16" Height="16"/>
+                    </Button>
+                    <Button Grid.Row="2" Grid.Column="1" x:Name="DownPipe" Background="Transparent" BorderThickness="0"  Margin="0,0,0,0" 
+                            IsTabStop="False" 
+                            Command="{Binding DowmDrawCommand}">
+                        <Image Source="..\Resources\PipeIcons\arrow_S.png" Width="16" Height="16"/>
+                    </Button>
+                    <Button Grid.Row="0" Grid.Column="0" x:Name="NWPipe" Background="Transparent" BorderThickness="0" HorizontalAlignment="Right"
+                            Margin="0,0,0,0"  IsTabStop="False"
+                            Command="{Binding UpLeftDrawCommand}">
+                        <Image Source="..\Resources\PipeIcons\arrow_NW.png" Width="16" Height="16" />
+                    </Button>
+                    <Button Grid.Row="0" Grid.Column="2" x:Name="NEPipe" Background="Transparent" BorderThickness="0"  Margin="0,0,0,0" 
+                            HorizontalAlignment="Left" IsTabStop="False"
+                            Command="{Binding UpRightDrawCommand}">
+                        <Image Source="..\Resources\PipeIcons\arrow_NE.png" Width="16" Height="16" />
+                    </Button>
+                    <Button Grid.Row="2" Grid.Column="2" x:Name="SEPipe" Background="Transparent" BorderThickness="0" HorizontalAlignment="Left"
+                            Margin="0,0,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" IsTabStop="False"
+                            Command="{Binding DownRightDrawCommand}">
+                        <Image Source="..\Resources\PipeIcons\arrow_SE.png" Width="16" Height="16" />
+                    </Button>
+                    <Button Grid.Row="2" Grid.Column="0" x:Name="SWPipe" Background="Transparent" BorderThickness="0" HorizontalAlignment="Right"
+                            Margin="0,0,0,0" IsTabStop="False" 
+                            Command="{Binding DownLeftDrawCommand}">
+                        <Image Source="..\Resources\PipeIcons\arrow_SW.png" Width="16" Height="16" />
+                    </Button>
+
+                    <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox Grid.Row="0" Grid.Column="0" x:Name="PipeSizeBox" ToolTip="Pipe Diameter"                                   
+                                  FontFamily="Century Gothic" FontSize="10"
+                                  Margin="0,10,0,2" Width="50" SelectedIndex="14">
+                            <ComboBoxItem>1/8</ComboBoxItem>
+                            <ComboBoxItem>1/4</ComboBoxItem>
+                            <ComboBoxItem>3/8</ComboBoxItem>
+                            <ComboBoxItem>1/2</ComboBoxItem>
+                            <ComboBoxItem>3/4</ComboBoxItem>
+                            <ComboBoxItem>1</ComboBoxItem>
+                            <ComboBoxItem>1 1/4</ComboBoxItem>
+                            <ComboBoxItem>1 1/2</ComboBoxItem>
+                            <ComboBoxItem>2</ComboBoxItem>
+                            <ComboBoxItem>2 1/2</ComboBoxItem>
+                            <ComboBoxItem>3</ComboBoxItem>
+                            <ComboBoxItem>3 1/2</ComboBoxItem>
+                            <ComboBoxItem>4</ComboBoxItem>
+                            <ComboBoxItem>5</ComboBoxItem>
+                            <ComboBoxItem>6</ComboBoxItem>
+                            <ComboBoxItem>8</ComboBoxItem>
+                            <ComboBoxItem>10</ComboBoxItem>
+                            <ComboBoxItem>12</ComboBoxItem>
+                            <ComboBoxItem>14</ComboBoxItem>
+                            <ComboBoxItem>16</ComboBoxItem>
+                            <ComboBoxItem>18</ComboBoxItem>
+                            <ComboBoxItem>20</ComboBoxItem>
+                            <ComboBoxItem>22</ComboBoxItem>
+                            <ComboBoxItem>24</ComboBoxItem>
+                            <ComboBoxItem>26</ComboBoxItem>
+                            <ComboBoxItem>28</ComboBoxItem>
+                            <ComboBoxItem>30</ComboBoxItem>
+                            <ComboBoxItem>32</ComboBoxItem>
+                            <ComboBoxItem>34</ComboBoxItem>
+                            <ComboBoxItem>36</ComboBoxItem>
+                        </ComboBox>
+                        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="PipeTypeBox" ToolTip="Pipe Type"
+                                  Background="Transparent" FontFamily="Century Gothic" FontSize="10"
+                                  Margin="0,10,0,2" Width="50" SelectedIndex="0">
+                            <ComboBoxItem>STD</ComboBoxItem>
+                            <ComboBoxItem>XS</ComboBoxItem>
+                            <ComboBoxItem>XXS</ComboBoxItem>
+                            <Separator/>
+                            <ComboBoxItem>40</ComboBoxItem>
+                            <ComboBoxItem>80</ComboBoxItem>
+                            <ComboBoxItem>160</ComboBoxItem>
+                            <Separator/>
+                            <ComboBoxItem>5S</ComboBoxItem>
+                            <ComboBoxItem>10S</ComboBoxItem>
+                            <ComboBoxItem>40S</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+
+                <!--FeedsItems-->
+                <ItemsControl ItemsSource="{Binding FeedsItems}" BorderBrush="Transparent">
+                    <ItemsControl.Template>
+                        <ControlTemplate TargetType="{x:Type ItemsControl}">
+                            <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
+                                    Padding="{TemplateBinding Control.Padding}"
+                                    BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                    Background="{TemplateBinding Panel.Background}"
+                                    SnapsToDevicePixels="True">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                                </ScrollViewer>
+                            </Border>
+                        </ControlTemplate>
+                    </ItemsControl.Template>
+
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Margin="10,0,0,0" Width="90"
+                                        ItemHeight="44"
+                                        ItemWidth="44" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="{x:Type ContentPresenter}">
+                            <Setter Property="Control.Padding"
+                                    Value="20" />
+                            <Setter Property="ContentControl.HorizontalContentAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="ContentControl.VerticalContentAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="ToolTip"
+                                    Value="{Binding ToolTip}" />
+                            <!--<Setter Property="designer:DragAndDropProps.EnabledForDrag"
+                                    Value="True" />-->
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Image IsHitTestVisible="True"                                   
+                                        Stretch="Fill"
+                                        Width="36"
+                                        Height="36"
+                                        Source="{Binding ImageUrl, Converter={x:Static converters:ImageUrlConverter.Instance}}"
+                                        acb:CommandBehavior.Event="MouseDown"
+                                        acb:CommandBehavior.Command="{Binding ClickItemCommand}"/>
+                                <Border Grid.Row="0" BorderBrush="BlueViolet" BorderThickness="1">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsClicked}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!--ToolBoxItems-->
+                <ItemsControl ItemsSource="{Binding ToolBoxItems}" BorderBrush="Transparent">
+                    <ItemsControl.Template>
+                        <ControlTemplate TargetType="{x:Type ItemsControl}">
+                            <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
+                                    Padding="{TemplateBinding Control.Padding}"
+                                    BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                    Background="{TemplateBinding Panel.Background}"
+                                    SnapsToDevicePixels="True">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" >
+                                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                                </ScrollViewer>
+                            </Border>
+                        </ControlTemplate>
+                    </ItemsControl.Template>
+
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Margin="10,0,0,0" Width="90"
+                                            ItemHeight="44"
+                                            ItemWidth="44" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="{x:Type ContentPresenter}">
+                            <Setter Property="Control.Padding"
+                                    Value="20" />
+                            <Setter Property="ContentControl.HorizontalContentAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="ContentControl.VerticalContentAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="ToolTip"
+                                    Value="{Binding ToolTip}" />
+                            <!--<Setter Property="designer:DragAndDropProps.EnabledForDrag"
+                                    Value="True" />-->
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Image Grid.Row="0" IsHitTestVisible="True"                                   
+                                        Stretch="Fill"
+                                        Width="36"
+                                        Height="36"
+                                        Source="{Binding ImageUrl, Converter={x:Static converters:ImageUrlConverter.Instance}}"
+                                        acb:CommandBehavior.Event="MouseDown"
+                                        acb:CommandBehavior.Command="{Binding ClickItemCommand}" />
+                                <Border Grid.Row="0" BorderBrush="BlueViolet" BorderThickness="1">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsClicked}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!--Other Types of Equipment-->
+                <Expander Visibility="{Binding Path=ShowExtensionTypes, Converter={x:Static converters:BoolToVisibilityConverter.Instance}}"
+                          IsExpanded="True"
+                          FontWeight="Bold">
+                    <Expander.Style>
+                        <Style TargetType="Expander" BasedOn="{StaticResource ExpanderStyle}">
+                            <Setter Property="Header" Value="Symbol Types"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=IsUnitOps}" Value="True">
+                                    <Setter Property="Header" Value="Unit Operation"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Expander.Style>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+
+                        </Grid.RowDefinitions>
+
+                        <ScrollViewer Grid.Row="1" Height="auto" MinWidth="90"
+                                  VerticalScrollBarVisibility="Auto" 
+                                  Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Top"
+                                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                                  BorderThickness="0" BorderBrush="Transparent">
+                            <ItemsControl ItemsSource="{Binding ExtensionItems}">
+                                <ItemsControl.Template>
+                                    <ControlTemplate TargetType="{x:Type ItemsControl}">
+                                        <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
+                                        Padding="{TemplateBinding Control.Padding}"
+                                        BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                        Background="{TemplateBinding Panel.Background}"
+                                        SnapsToDevicePixels="True">
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto" >
+                                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                                            </ScrollViewer>
+                                        </Border>
+                                    </ControlTemplate>
+                                </ItemsControl.Template>
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Margin="10,0,0,0" Width="90"
+                                           ItemHeight="{Binding ImageHeight}"
+                                           ItemWidth="{Binding ImageWidth}" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ContentPresenter}">
+                                        <Setter Property="Control.Padding"
+                                        Value="10" />
+                                        <Setter Property="ContentControl.HorizontalContentAlignment"
+                                        Value="Stretch" />
+                                        <Setter Property="ContentControl.VerticalContentAlignment"
+                                        Value="Stretch" />
+                                        <Setter Property="ToolTip"
+                                        Value="{Binding ToolTip}" />
+                                        <!--<Setter Property="designer:DragAndDropProps.EnabledForDrag"
+                                        Value="True" />-->
+                                    </Style>
+                                </ItemsControl.ItemContainerStyle>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Image Margin="5,5,0,5"
+                                           IsHitTestVisible="True"
+                                           Stretch="Fill"
+                                           Width="{Binding ImageWidth}"
+                                           Height="{Binding ImageHeight}"
+                                           Source="{Binding ImageUrl, Converter={x:Static converters:ImageUrlConverter.Instance}}" 
+                                           acb:CommandBehavior.Event="MouseDown"
+                                           acb:CommandBehavior.Command="{Binding ClickItemCommand}"/>
+                                            <Border BorderBrush="BlueViolet" BorderThickness="1" >
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsClicked}" Value="True">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                            </Border>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+
+                        <ComboBox Grid.Row="2" Visibility="{Binding ShowColumnComboBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                ItemsSource="{Binding ColumnSelection.Values, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedIndex="{Binding ColumnSelection.SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 FontFamily="Arial Narrow"
+                                  FontSize="12">
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="FontSize" Value="12"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                        </ComboBox>
+
+                        <ComboBox Grid.Row="2" Visibility="{Binding ShowReactorComboBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                ItemsSource="{Binding ReactorSelection.Values, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedIndex="{Binding ReactorSelection.SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <ComboBox Grid.Row="2" Visibility="{Binding ShowVesselComboBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                ItemsSource="{Binding VesselSelection.Values, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedIndex="{Binding VesselSelection.SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <ComboBox Grid.Row="2" Visibility="{Binding ShowExchangerComboBox, Converter={x:Static converters:BoolToVisibilityConverter.Instance}}" 
+                                ItemsSource="{Binding ExchangerSelection.Values, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedIndex="{Binding ExchangerSelection.SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+                </Expander>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2">
+                <Button Command="{Binding DesignCommand}" Style="{StaticResource DesignButtonStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Resources/ModelingIcons/design.png" Height="16" Width="16" Margin="-5,0,2,0" />
+                        <TextBlock FontWeight="Bold" Background="Transparent" FontFamily="Century Gothic" Text="Design" />
+                    </StackPanel>
+                </Button>
+
+                <Button Command="{Binding SimulateCommand}" Style="{StaticResource SimulateButtonStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Resources/ModelingIcons/simulate.png" Height="16" Width="16" Margin="0,0,5,0"/>
+                        <TextBlock FontWeight="Bold" Background="Transparent" FontFamily="Century Gothic" Text="Simulate" />
+                    </StackPanel>
+                </Button>
+
+                <Button Command="{Binding AnalyzeCommand}" Style="{StaticResource AnalyzeButtonStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Resources/ModelingIcons/analyze.png" Height="16" Width="16" Margin="2,0,0,0"/>
+                        <TextBlock FontWeight="Bold" Background="Transparent" FontFamily="Century Gothic" Text="Analyze" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+
+</UserControl>

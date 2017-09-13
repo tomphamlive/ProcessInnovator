@@ -39,7 +39,6 @@ namespace RightPanel.ViewModels
         //    {
         //        SetProperty(ref _physicalProperties, value);
         //        SelectedTabIndex = PhysicalPropertiesTabIndex;
-        //        RaisePropertyChanged(nameof(PhysicalProperties));
         //    }
         //}
 
@@ -55,7 +54,6 @@ namespace RightPanel.ViewModels
         //        SelectedTabIndex = _modelDataViewModel == null ? PhysicalPropertiesTabIndex : EquipmentItemsTabIndex;
         //        ShowRightPanel = _modelDataViewModel != null;
 
-        //        RaisePropertyChanged(nameof(ModelDataViewModel));
         //    }
         //}
 
@@ -71,7 +69,6 @@ namespace RightPanel.ViewModels
                     throw new ArgumentOutOfRangeException(nameof(SelectedTabIndex));
 
                 SetProperty(ref _selectedTabIndex, value);
-                RaisePropertyChanged(nameof(SelectedTabIndex));
 
                 SelectedTabChanged?.Invoke(this);
             }
@@ -81,11 +78,7 @@ namespace RightPanel.ViewModels
         public bool ShowRightPanel
         {
             get => _showRightPanel;
-            set
-            {
-                SetProperty(ref _showRightPanel, value);
-                RaisePropertyChanged(nameof(ShowRightPanel));
-            }
+            set => SetProperty(ref _showRightPanel, value);
         }
 
         #endregion  //Properties
